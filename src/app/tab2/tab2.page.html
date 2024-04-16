@@ -13,5 +13,10 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 2 page"></app-explore-container>
+  <div align="center">
+    <!-- Card with poster -->
+    <ion-card *ngFor="let Poster of movies_images">
+      <img alt="movie" src="{{ Poster.posters }}" />
+    </ion-card>
+  </div>
 </ion-content>
