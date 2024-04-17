@@ -13,7 +13,15 @@ export class MoviesInfoService {
   constructor(private httpClient:HttpClient) { }
 
   // 5 - httpClient logic
-  getMovieImages():Observable<any> {
-    return this.httpClient.get('https://api.themoviedb.org/3/movie/320/images?api_key=66f9b5cce61d3360b26c42afc1d81fff');
+  getMovieImages(movieId: string): Observable<any> {
+    const apiKey = '66f9b5cce61d3360b26c42afc1d81fff';
+    
+    // TMDB API link to get every image related to a movie (backdrop, poster, and logos)
+    const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}/images`;
+    
+    // Define query parameter
+    const queryParameter = `?api_key=${apiKey}`;
+
+    return this.httpClient.get(apiUrl + queryParameter);
   }
 }
