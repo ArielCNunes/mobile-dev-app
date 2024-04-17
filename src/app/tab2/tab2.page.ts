@@ -14,7 +14,7 @@ import { CommonModule } from '@angular/common'; // for *ngFor
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader]
 })
 export class Tab2Page implements OnInit {
-  movies_images:any = [];
+  moviesImages:any = [];
 
   // 7
   constructor(private movieImagesService:MoviesInfoService) {}
@@ -24,7 +24,7 @@ export class Tab2Page implements OnInit {
     this.movieImagesService.getMovieImages().subscribe(
       (data)=>{
         // Get posters from TMDB API
-        this.movies_images = data.posters;
+        this.moviesImages = data.posters;
       }
     );
   }
