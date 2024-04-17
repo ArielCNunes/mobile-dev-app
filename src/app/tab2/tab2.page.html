@@ -9,14 +9,20 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Posters</ion-title>
+      <ion-title size="large">Search Movie</ion-title>
     </ion-toolbar>
   </ion-header>
 
-  <div align="center" *ngFor="let poster of moviesImages">
-    <!-- Card with poster -->
-    <ion-card>
-      <img alt="movie poster" src="{{ poster.posters }}" />
+  <!-- List of cards with poster and details -->
+  <div align="center">
+    <ion-card *ngFor="let movie of Movies">
+      <ion-img alt="movie poster" src="{{ movie.Poster }}"></ion-img>
+      <ion-card-header>
+        <h1>{{ movie.Title }}</h1>
+      </ion-card-header>
+      <ion-card-header>
+        <h3>{{ movie.Year }}</h3>
+      </ion-card-header>
     </ion-card>
   </div>
 </ion-content>

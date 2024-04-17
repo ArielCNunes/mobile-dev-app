@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonImg } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 
 // 6
@@ -11,20 +11,20 @@ import { CommonModule } from '@angular/common'; // for *ngFor
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg]
 })
 export class Tab2Page implements OnInit {
-  moviesImages:any = [];
+  Movies:any = [];
 
   // 7
-  constructor(private movieImagesService:MoviesInfoService) {}
+  constructor(private movieImagesService:MoviesInfoService) { }
 
   // 8
   ngOnInit(): void {
-    this.movieImagesService.getMovieImages().subscribe(
+    this.movieImagesService.getMovieImages("dune").subscribe(
       (data)=>{
-        // Get posters from TMDB API
-        this.moviesImages = data.posters;
+        // Get posters
+        this.Movies = data.Search;
       }
     );
   }

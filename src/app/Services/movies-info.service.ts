@@ -8,20 +8,21 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesInfoService {
-
   // 4
   constructor(private httpClient:HttpClient) { }
 
-  // 5 - httpClient logic
-  getMovieImages(movieId: string): Observable<any> {
-    const apiKey = '66f9b5cce61d3360b26c42afc1d81fff';
+  // This method will pull the images from the API
+  getMovieImages(title: string): Observable<any> {
+    // My API key for OMDB API
+    const apiKey = 'b771e81d';
     
-    // TMDB API link to get every image related to a movie (backdrop, poster, and logos)
-    const apiUrl = `https://api.themoviedb.org/3/movie/${movieId}/images`;
+    // URL to their website
+    const apiUrl = `http://www.omdbapi.com/`;
     
-    // Define query parameter
-    const queryParameter = `?api_key=${apiKey}`;
+    // Api key + key word for genre (given by the user)
+    const query = `?apikey=${apiKey}&s=${title}&plot=full`;
 
-    return this.httpClient.get(apiUrl + queryParameter);
+    // Return the URL with a list of movies
+    return this.httpClient.get(apiUrl + query);
   }
 }
