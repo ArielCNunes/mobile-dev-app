@@ -20,7 +20,7 @@ export class MoviesInfoService {
     const apiUrl = `http://www.omdbapi.com/`;
     
     // Api key + key word for genre (given by the user)
-    const query = `?apikey=${apiKey}&s=${title}&plot=full`;
+    const query = `?apikey=${apiKey}&t=${title}&plot=full`;
 
     // Return the URL with a list of movies
     return this.httpClient.get(apiUrl + query);

@@ -21,15 +21,15 @@ export class Tab2Page implements OnInit {
 
   ngOnInit(): void {
       // Default search - this is what the user will see the page is first launched
-      this.getMovie("action");
+      this.getMovie("Mulholland");
   }
 
-  // Search for a movie method
+  // This method will search for a based using the keyword given by the user
   getMovie(title: any) {
     this.movieImagesService.getMovieImages(title).subscribe(
       (data) => {
-        // Get posters from api
-        this.Movies = data.Search;
+        // Get info from api
+        this.Movies = [data];
       }
     );
   }
