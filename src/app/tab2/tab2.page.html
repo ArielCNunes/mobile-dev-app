@@ -15,8 +15,9 @@
 
   <!-- Search bar and button that will allow the user to seach for a movie -->
   <ion-item>
-    <ion-input placeholder="Enter movie title or keyword" #searchInput></ion-input>
-    <ion-button (click)="getMovie(searchInput.value)">
+    <!-- Bind the value of the input field to the searchTerm property in the .ts file -->
+    <ion-input placeholder="Enter movie title or keyword" [(ngModel)]="searchTerm" type="text" inputmode="email"></ion-input>
+    <ion-button (click)="getMovie(searchTerm)">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
   </ion-item>
