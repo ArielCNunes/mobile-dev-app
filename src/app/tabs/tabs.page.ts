@@ -14,6 +14,6 @@ export class TabsPage {
   public environmentInjector = inject(EnvironmentInjector);
 
   constructor() {
-    addIcons({ images, time, searchOutline });
+    addIcons({ images, time, searchOutline});
   }
 }
