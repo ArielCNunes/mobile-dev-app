@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonImg } from '@ionic/angular/standalone';
+import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonImg, IonItem, IonInput, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
 
-// 6
 import { MoviesInfoService } from '../Services/movies-info.service';
 import { CommonModule } from '@angular/common'; // for *ngFor
 
@@ -11,19 +10,23 @@ import { CommonModule } from '@angular/common'; // for *ngFor
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg, IonItem, IonInput, IonButton, IonIcon]
 })
 export class Tab2Page implements OnInit {
   Movies:any = [];
 
-  // 7
   constructor(private movieImagesService:MoviesInfoService) { }
 
-  // 8
   ngOnInit(): void {
-    this.movieImagesService.getMovieImages("dune").subscribe(
-      (data)=>{
-        // Get posters
+      // Default search
+      this.getMovie("action");
+  }
+
+  // Search for a movie method
+  getMovie(title: any) {
+    this.movieImagesService.getMovieImages(title).subscribe(
+      (data) => {
+        // Get posters from api
         this.Movies = data.Search;
       }
     );
