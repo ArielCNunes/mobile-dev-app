@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
-
+import { isPlatform } from '@ionic/angular';
 import { MoviesInfoService } from '../Services/movies-info.service';
 import { CommonModule } from '@angular/common'; // for *ngFor
 import { FormsModule } from '@angular/forms';
+import { Browser } from '@capacitor/browser'; // open browser page
+import { Keyboard } from '@capacitor/keyboard'; // show keyboard
 
 @Component({
   selector: 'app-tab2',
@@ -14,23 +16,42 @@ import { FormsModule } from '@angular/forms';
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon, FormsModule]
 })
 export class Tab2Page implements OnInit {
-  Movies:any = []; // array holding all movies
-  searchTerm: string = ''; // movie title
+  @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the html file
+  Movies:any = [];
+  title: string = '';
 
   constructor(private movieImagesService:MoviesInfoService) { }
 
   ngOnInit(): void {
-      // Default search - this is what the user will see the page is first launched
+      // Default search values in case the user does not search for a movie
       this.getMovie("Mulholland");
   }
 
-  // This method will search for a based using the keyword given by the user
+  // Search for a movie
   getMovie(title: any) {
-    this.movieImagesService.getMovieImages(title).subscribe(
+    this.movieImagesService.getMovieInfo(title).subscribe(
       (data) => {
         // Get info from api
         this.Movies = [data];
       }
     );
+  }
+
+  // REQUIREMENT 3 - an Ionic Native/Cordova/Capacitor plugin (browser & keyboard)
+  // Open movie's IMDB page
+  async openIMDBPage(movieTitle: string) {
+    // This code opens a page to an IDBM search
+    const url = `https://www.imdb.com/find/?q=${movieTitle}`;
+    await Browser.open({ url });
+  };
+
+  // Show Keyboard when user clicks on search bar
+  async showKeyboard() {
+    if (isPlatform('ios')) {
+      await Keyboard.show();
+    } else {
+      // For all other platforms + web
+      await this.searchBar.setFocus();
+    }
   }
 }

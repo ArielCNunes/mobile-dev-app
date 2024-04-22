@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-
-// 3
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
@@ -8,21 +6,20 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class MoviesInfoService {
-  // 4
+  // REQUIREMENT 4 - a http client to read JSON data from an external URL
   constructor(private httpClient:HttpClient) { }
 
-  // This method will pull the images from the API
-  getMovieImages(title: string): Observable<any> {
-    // My API key for OMDB API
+  // Get the info from the API
+  getMovieInfo(title: string): Observable<any> {
     const apiKey = 'b771e81d';
     
     // URL to their website
     const apiUrl = `http://www.omdbapi.com/`;
     
-    // Api key + key word for genre (given by the user)
+    // Api key + key word (given by the user) to build the query part of the url
     const query = `?apikey=${apiKey}&t=${title}&plot=full`;
 
-    // Return the URL with a list of movies
+    // This will return a movie object
     return this.httpClient.get(apiUrl + query);
   }
 }

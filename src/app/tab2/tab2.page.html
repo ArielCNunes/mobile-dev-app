@@ -1,34 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Posters
+      Movie Search App
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" autofocus>
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="medium">Find Films</ion-title>
-    </ion-toolbar>
-  </ion-header>
-
   <!-- Search bar and button that will allow the user to seach for a movie -->
   <ion-item>
-    <!-- Bind the value of the input field to the searchTerm property in the .ts file -->
-    <ion-searchbar placeholder="Movie title or keyword" [(ngModel)]="searchTerm" animated="true"></ion-searchbar>
-    <ion-button (click)="getMovie(searchTerm)" class="searchBtn">
+    <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation, two-way data binding (ngModel) -->
+    <!-- Bind the word entered by the user to the title property in the .ts file -->
+    <ion-searchbar placeholder="Movie title or keyword" 
+                   [(ngModel)]="title"
+                   animated="true"
+                   #searchInput
+                   (click)="showKeyboard()">
+    </ion-searchbar>
+
+    <ion-button (click)="getMovie(title)" class="searchBtn">
       <ion-icon slot="icon-only" name="search-outline"></ion-icon>
     </ion-button>
   </ion-item>
 
+  <!-- Top buttons -->
   <div align="center">
-    <ion-button class="addToWatchlist">
+    <!-- Add to Watchlist -->
+    <ion-button class="addToWatchlist" >
       <ion-icon slot="icon-only" name="time"></ion-icon>
+    </ion-button>
+
+    <!-- Go to IMDB page -->
+    <ion-button (click)="openIMDBPage(title)" class="addToWatchlist">
+      <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
     </ion-button>
   </div>
   
-  <!-- List of cards with poster and details -->
+  <!-- Card with poster and details -->
+  <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation ({{ }}), two-way data binding -->
   <div>
     <ion-card *ngFor="let movie of Movies">
       <ion-img alt="movie poster" src="{{ movie.Poster }}"></ion-img>
