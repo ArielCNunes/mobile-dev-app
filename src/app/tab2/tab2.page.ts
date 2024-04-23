@@ -16,7 +16,7 @@ import { Keyboard } from '@capacitor/keyboard'; // show keyboard
   imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon, FormsModule]
 })
 export class Tab2Page implements OnInit {
-  @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the html file
+  @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the .html file
   Movies:any = [];
   title: string = '';
 
@@ -24,7 +24,7 @@ export class Tab2Page implements OnInit {
 
   ngOnInit(): void {
       // Default search values in case the user does not search for a movie
-      this.getMovie("Mulholland");
+      this.getMovie("The Tree of Life");
   }
 
   // Search for a movie
@@ -39,10 +39,15 @@ export class Tab2Page implements OnInit {
 
   // REQUIREMENT 3 - an Ionic Native/Cordova/Capacitor plugin (browser & keyboard)
   // Open movie's IMDB page
-  async openIMDBPage(movieTitle: string) {
-    // This code opens a page to an IDBM search
-    const url = `https://www.imdb.com/find/?q=${movieTitle}`;
-    await Browser.open({ url });
+  async openIMDBPage(title: string) {
+    if (title == '') { // title will always be empty at the start
+      const url = `https://www.imdb.com/find/?q=the%20tree%20of%20life&ref_=nv_sr_sm`;
+      await Browser.open({ url });
+    } else {
+      // This code opens a page to an IDBM search
+      const url = `https://www.imdb.com/find/?q=${title}`;
+      await Browser.open({ url });
+    }
   };
 
   // Show Keyboard when user clicks on search bar

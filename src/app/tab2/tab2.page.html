@@ -11,7 +11,7 @@
   <ion-item>
     <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation, two-way data binding (ngModel) -->
     <!-- Bind the word entered by the user to the title property in the .ts file -->
-    <ion-searchbar placeholder="Movie title or keyword" 
+    <ion-searchbar placeholder="e.g. The Tree of Life"
                    [(ngModel)]="title"
                    animated="true"
                    #searchInput
@@ -26,7 +26,7 @@
   <!-- Top buttons -->
   <div align="center">
     <!-- Add to Watchlist -->
-    <ion-button class="addToWatchlist" >
+    <ion-button class="addToWatchlist">
       <ion-icon slot="icon-only" name="time"></ion-icon>
     </ion-button>
 
@@ -46,6 +46,8 @@
         <h3>({{ movie.Year }})</h3>
         <h3>Directed by {{ movie.Director }}</h3>
         <h3>Age Rating: {{ movie.Rated }}</h3>
+        <h3>IMDB Rating: {{ movie.imdbRating }}</h3>
+        <h3>Runtime: {{ movie.Runtime }}</h3>
         <h3>Genre: {{ movie.Genre }}</h3>
       </ion-card-header>
     </ion-card>
