@@ -40,8 +40,10 @@ export class Tab2Page implements OnInit {
   // REQUIREMENT 3 - an Ionic Native/Cordova/Capacitor plugin (browser & keyboard)
   // Open movie's IMDB page
   async openIMDBPage(title: string) {
-    if (title == '') { // title will always be empty at the start
-      const url = `https://www.imdb.com/find/?q=the%20tree%20of%20life&ref_=nv_sr_sm`;
+    // Title will always be empty at the start
+    if (title == '') {
+      title = 'the%20tree%20of%20life';
+      const url = `https://www.imdb.com/find/?q=${title}`;
       await Browser.open({ url });
     } else {
       // This code opens a page to an IDBM search
