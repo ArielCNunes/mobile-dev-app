@@ -19,6 +19,7 @@ export class Tab2Page implements OnInit {
   @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the .html file
   Movies: any = [];
   title: string = '';
+  newTitle:string = '';
   isHidden:boolean = true;
 
   constructor(private movieImagesService:MoviesInfoService) { }
@@ -50,6 +51,13 @@ export class Tab2Page implements OnInit {
     const url = `https://www.imdb.com/find/?q=${title}`;
     await Browser.open({ url });
   };
+
+  // Open trailer on YouTube search page
+  async playTrailer(title: string) {
+    this.newTitle = title.replace(/\s+/g, '+'); // following youtube's url format for searches
+    const url = `https://www.youtube.com/results?search_query=${this.newTitle}+trailer`;
+    await Browser.open({ url });
+  }
 
   // Show Keyboard when user clicks on search bar
   async showKeyboard() {
