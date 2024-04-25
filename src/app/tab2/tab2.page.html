@@ -11,7 +11,7 @@
   <ion-item>
     <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation, two-way data binding (ngModel) -->
     <!-- Bind the word entered by the user to the title property in the .ts file -->
-    <ion-searchbar placeholder="e.g. The Tree of Life"
+    <ion-searchbar placeholder="Search. e.g. The Tree of Life"
                    [(ngModel)]="title"
                    animated="true"
                    #searchInput
@@ -24,7 +24,7 @@
   </ion-item>
 
   <!-- Top buttons -->
-  <div align="center">
+  <div align="center" [hidden]="isHidden">
     <!-- Add to Watchlist -->
     <ion-button class="addToWatchlist">
       <ion-icon slot="icon-only" name="time"></ion-icon>
@@ -38,7 +38,7 @@
   
   <!-- Card with poster and details -->
   <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation ({{ }}), two-way data binding -->
-  <div>
+  <div [hidden]="isHidden">
     <ion-card *ngFor="let movie of Movies">
       <ion-img alt="movie poster" src="{{ movie.Poster }}"></ion-img>
       <ion-card-header>
