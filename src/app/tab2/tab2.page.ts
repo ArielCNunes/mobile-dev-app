@@ -7,14 +7,16 @@ import { CommonModule } from '@angular/common'; // for *ngFor
 import { FormsModule } from '@angular/forms';
 import { Browser } from '@capacitor/browser'; // open browser page
 import { Keyboard } from '@capacitor/keyboard'; // show keyboard
+import { Router, RouterLinkWithHref } from '@angular/router';
 
 @Component({
   selector: 'app-tab2',
   templateUrl: 'tab2.page.html',
   styleUrls: ['tab2.page.scss'],
   standalone: true,
-  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon, FormsModule]
+  imports: [IonHeader, IonToolbar, IonTitle, IonContent, ExploreContainerComponent, CommonModule, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon, FormsModule, RouterLinkWithHref]
 })
+
 export class Tab2Page implements OnInit {
   @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the .html file
   Movies: any = [];
@@ -22,7 +24,7 @@ export class Tab2Page implements OnInit {
   newTitle:string = '';
   isHidden:boolean = true;
 
-  constructor(private movieImagesService:MoviesInfoService) { }
+  constructor(private movieImagesService:MoviesInfoService, private router:Router) { }
 
   ngOnInit(): void {
   }
@@ -67,5 +69,10 @@ export class Tab2Page implements OnInit {
       // For all other platforms + web
       await this.searchBar.setFocus();
     }
+  }
+
+  // Open synopsis page
+  synopsis() {
+    this.router.navigate(['/movie-synopsis']);
   }
 }

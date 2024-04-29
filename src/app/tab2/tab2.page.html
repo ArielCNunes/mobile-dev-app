@@ -15,7 +15,7 @@
                    [(ngModel)]="title"
                    animated="true"
                    #searchInput
-                   (click)="showKeyboard()">
+                   (click)="showKeyboard()"> 
     </ion-searchbar>
 
     <ion-button (click)="getMovie(title)" class="searchBtn">
@@ -26,16 +26,20 @@
   <!-- Buttons -->
   <div align="center" [hidden]="isHidden">
     <!-- Trailer on YouTube -->
+    <ion-button (click)="synopsis()" class="buttons">
+      <ion-icon slot="icon-only" name="help-outline"></ion-icon>
+    </ion-button>
+    <!-- Synopsis -->
     <ion-button (click)="playTrailer(title)" class="buttons">
       <ion-icon slot="icon-only" name="play-outline"></ion-icon>
-    </ion-button>
-    <!-- Add to Watchlist -->
-    <ion-button class="buttons">
-      <ion-icon slot="icon-only" name="time"></ion-icon>
     </ion-button>
     <!-- Go to IMDB page -->
     <ion-button (click)="openIMDBPage(title)" class="buttons">
       <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+    </ion-button>
+    <!-- Add to Watchlist -->
+    <ion-button class="buttons">
+      <ion-icon slot="icon-only" name="time"></ion-icon>
     </ion-button>
   </div>
   
