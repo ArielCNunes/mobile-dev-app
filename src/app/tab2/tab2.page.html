@@ -24,9 +24,9 @@
   </ion-item>
 
   <!-- Buttons -->
-  <div align="center" [hidden]="isHidden">
+  <div align="center" [hidden]="isHidden" *ngFor="let movie of Movies">
     <!-- Trailer on YouTube -->
-    <ion-button (click)="synopsis()" class="buttons">
+    <ion-button (click)="synopsis(title)" class="buttons">
       <ion-icon slot="icon-only" name="help-outline"></ion-icon>
     </ion-button>
     <!-- Synopsis -->
@@ -38,7 +38,7 @@
       <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
     </ion-button>
     <!-- Add to Watchlist -->
-    <ion-button class="buttons">
+    <ion-button class="buttons" (click)="addToWatchlist(movie.Poster)"> <!-- Pass movie poster directly -->
       <ion-icon slot="icon-only" name="time"></ion-icon>
     </ion-button>
   </div>

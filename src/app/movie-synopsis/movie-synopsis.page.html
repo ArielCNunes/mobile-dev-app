@@ -10,14 +10,17 @@
 <ion-content [fullscreen]="true">
   <ion-header collapse="condense">
     <ion-toolbar>
-      <ion-title size="large">Synopsis</ion-title>
+      <ion-title size="large">More Info</ion-title>
     </ion-toolbar>
   </ion-header>
 
   <div>
     <ion-card *ngFor="let movie of Movies">
       <ion-card-header>
-        <h3>{{ movie.Plot }}</h3>
+        <h4><b>Release date:</b> {{ movie.Released }}</h4>
+        <h4><b>Written by</b> {{ movie.Writer }}</h4>
+        <h4><b>Box Office:</b> {{ movie.BoxOffice }}</h4>
+        <h3><b>Synopsis:</b> {{ movie.Plot }}</h3>
       </ion-card-header>
     </ion-card>
   </div>

@@ -13,5 +13,13 @@
     </ion-toolbar>
   </ion-header>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+  <ion-content>
+    <ion-grid class="poster-grid">
+      <ion-row>
+        <ion-col *ngFor="let movie of watchlist">
+            <ion-img [src]="movie"></ion-img>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-content>
 </ion-content>

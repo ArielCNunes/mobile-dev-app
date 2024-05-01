@@ -8,6 +8,7 @@ import { FormsModule } from '@angular/forms';
 import { Browser } from '@capacitor/browser'; // open browser page
 import { Keyboard } from '@capacitor/keyboard'; // show keyboard
 import { Router, RouterLinkWithHref } from '@angular/router';
+import { WatchlistService } from '../Services/watchlist.service';
 
 @Component({
   selector: 'app-tab2',
@@ -24,7 +25,7 @@ export class Tab2Page implements OnInit {
   newTitle:string = '';
   isHidden:boolean = true;
 
-  constructor(private movieImagesService:MoviesInfoService, private router:Router) { }
+  constructor(private movieImagesService:MoviesInfoService, private router:Router, private watchlistService: WatchlistService) { }
 
   ngOnInit(): void {
   }
@@ -47,6 +48,11 @@ export class Tab2Page implements OnInit {
     );
   }
 
+  // Add to watchlist through service
+  addToWatchlist(title: string) {
+    this.watchlistService.addToWatchlist(title);
+  }
+
   // REQUIREMENT 3 - an Ionic Native/Cordova/Capacitor plugin (browser & keyboard)
   // Open movie's IMDB search page
   async openIMDBPage(title: string) {
@@ -67,12 +73,13 @@ export class Tab2Page implements OnInit {
       await Keyboard.show();
     } else {
       // For all other platforms + web
-      await this.searchBar.setFocus();
+      // await this.searchBar.setFocus();
     }
   }
 
-  // Open synopsis page
-  synopsis() {
-    this.router.navigate(['/movie-synopsis']);
+  // Open synopsis page and pass the title as a state
+  synopsis(title: string) {
+    // passing additional data to the destination component using browser history
+    this.router.navigate(['/movie-synopsis'], { state: { title: title } });
   }
 }
