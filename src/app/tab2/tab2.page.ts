@@ -25,11 +25,16 @@ export class Tab2Page implements OnInit {
   newTitle:string = '';
   isHidden:boolean = true;
 
-  constructor(private movieImagesService:MoviesInfoService, private router:Router, private watchlistService: WatchlistService) { }
+  constructor(private movieImagesService:MoviesInfoService, 
+    private router:Router, 
+    private watchlistService: WatchlistService
+  ) { }
 
   ngOnInit(): void {
   }
 
+  // Methods
+  // Store API data
   getMovie(title: any) {
     this.movieImagesService.getMovieInfo(title).subscribe(
       (data) => {
@@ -37,7 +42,7 @@ export class Tab2Page implements OnInit {
          * Get info from API by making sure that search bar isn't empty and that the result
          * returned is valid i.e. ("Response": "True")
          */
-        if (title.trim().length > 0 && (data.Response === "True")) {
+        if (data.Response === "True") {
           this.Movies = [data];
           this.isHidden = false;
         } else {
@@ -49,8 +54,8 @@ export class Tab2Page implements OnInit {
   }
 
   // Add to watchlist through service
-  addToWatchlist(title: string) {
-    this.watchlistService.addToWatchlist(title);
+  addToWatchlist(poster: string) {
+    this.watchlistService.addToWatchlist(poster);
   }
 
   // REQUIREMENT 3 - an Ionic Native/Cordova/Capacitor plugin (browser & keyboard)

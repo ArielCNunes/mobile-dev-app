@@ -30,7 +30,7 @@ export class MovieSynopsisPage implements OnInit {
          * Get info from API by making sure that search bar isn't empty and that the result
          * returned is valid i.e. ("Response": "True")
          */
-        if (title.trim().length > 0 && (data.Response === "True")) {
+        if (data.Response === "True") {
           this.Movies = [data];
         } else {
           alert("Enter a valid title.");
