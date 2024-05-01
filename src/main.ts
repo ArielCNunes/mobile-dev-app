@@ -10,6 +10,7 @@ import { environment } from './environments/environment';
 // 1
 import { HttpClientModule } from '@angular/common/http';
 import { importProvidersFrom } from '@angular/core';
+import { IonicStorageModule } from '@ionic/storage-angular';
 
 if (environment.production) {
   enableProdMode();
@@ -20,6 +21,7 @@ bootstrapApplication(AppComponent, {
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     provideIonicAngular(),
     provideRouter(routes),
+    importProvidersFrom(IonicStorageModule.forRoot()),
 
     // 2
     importProvidersFrom(HttpClientModule)
