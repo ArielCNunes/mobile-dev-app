@@ -19,7 +19,7 @@ export class Tab3Page implements OnInit {
 
   ngOnInit() {
     this.watchlist = this.watchlistService.getWatchlist();
-    // Subscribe to the movieAdded event
+    // Subscribe to movieAdded
     this.watchlistService.movieAdded.subscribe((movie: string) => {
       this.watchlist.push(movie);
     });
