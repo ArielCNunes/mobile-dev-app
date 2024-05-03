@@ -7,13 +7,39 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class WatchlistService {
   watchlist: string[] = [];
   movieAdded = new EventEmitter<string>(); // Event emitter
+  private localStorageKey = 'watchlist';
 
   constructor() { }
 
-  addToWatchlist(movie: string) {
-    // Add movie poster to local array
-    this.watchlist.push(movie);
-    // There are methods subscribed to this so we need to let them know that the img has been added to the watchlist
-    this.movieAdded.emit(movie);
+  addToWatchlist(poster: string) {
+    // Get the already stored watchlist
+    let watchlist = this.getWatchlist();
+    // Add the poster to the array
+    watchlist.push(poster);
+    // Use the save method to save the poster to local storage
+    this.saveWatchlist(watchlist);
+    // Emit the event so that the poster can be displayed by the .ts page
+    this.movieAdded.emit(poster);
+  }
+
+  getWatchlist(): string[] {
+    // Get data from local storage
+    const watchlistData = localStorage.getItem(this.localStorageKey);
+    /**
+     * Check if there is any watchlist data
+     * If true, parse it from JSON format and return the array
+     * If false, return an empty array
+     */
+    return watchlistData ? JSON.parse(watchlistData) : [];
+  }
+
+  private saveWatchlist(watchlist: string[]) {
+    // Convert the array into a JSON string and store it
+    localStorage.setItem(this.localStorageKey, JSON.stringify(watchlist));
+  }
+
+  clearWatchlist() {
+    // Simply removes the data from the array in the local storage
+    localStorage.removeItem(this.localStorageKey);
   }
 }
