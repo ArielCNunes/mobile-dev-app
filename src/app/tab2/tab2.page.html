@@ -10,12 +10,11 @@
   <!-- Search bar and button that will allow the user to seach for a movie -->
   <ion-item>
     <!-- REQUIREMENT 1 - Built-in Data Binding properties – e.g. interpolation, two-way data binding (ngModel) -->
-    <!-- Bind the word entered by the user to the title property in the .ts file -->
+    <!-- Bind the word entered by the user to the title property in the .ts file (removed (click)="showKeyboard())-->
     <ion-searchbar placeholder="Search. e.g. The Tree of Life"
                    [(ngModel)]="title"
                    animated="true"
-                   #searchInput
-                   (click)="showKeyboard()"> 
+                   #searchInput> 
     </ion-searchbar>
 
     <ion-button (click)="getMovie(title)" class="searchBtn">

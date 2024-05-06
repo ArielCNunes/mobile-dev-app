@@ -73,14 +73,14 @@ export class Tab2Page implements OnInit {
   }
 
   // Show Keyboard when user clicks on search bar
-  async showKeyboard() {
-    if (isPlatform('ios')) {
-      await Keyboard.show();
-    } else {
-      // For all other platforms + web
-      // await this.searchBar.setFocus();
-    }
-  }
+  // async showKeyboard() {
+  //   if (isPlatform('ios')) {
+  //     await Keyboard.show();
+  //   } else {
+  //     // For all other platforms + web
+  //     await this.searchBar.setFocus();
+  //   }
+  // } NOT WORKING (at least not on the web)
 
   // Open synopsis page and pass the title as a state
   synopsis(title: string) {

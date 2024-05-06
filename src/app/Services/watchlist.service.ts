@@ -33,6 +33,7 @@ export class WatchlistService {
     return watchlistData ? JSON.parse(watchlistData) : [];
   }
 
+  // REQUIREMENT 4 - Data Persistence
   private saveWatchlist(watchlist: string[]) {
     // Convert the array into a JSON string and store it
     localStorage.setItem(this.localStorageKey, JSON.stringify(watchlist));
