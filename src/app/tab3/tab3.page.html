@@ -18,8 +18,8 @@
       <ion-button (click)="clearWatchlist()" style="position: center;">Clear Watchlist</ion-button>
     </div>
     <ion-grid class="poster-grid">
-      <ion-row>
-        <ion-col *ngFor="let movie of watchlist">
+      <ion-row *ngFor="let movie of watchlist">
+        <ion-col>
             <ion-img [src]="movie"></ion-img>
         </ion-col>
       </ion-row>

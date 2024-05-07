@@ -19,7 +19,7 @@ export class MovieSynopsisPage implements OnInit {
   constructor(private movieImagesService:MoviesInfoService) { }
 
   ngOnInit(): void {
-    // Retrieve data passed to the current page via the browser history
+    // Get title passed from tab2.page.ts (this data is stored in history.state)
     this.getMovie(history.state.title);
   }
  
@@ -27,7 +27,7 @@ export class MovieSynopsisPage implements OnInit {
     this.movieImagesService.getMovieInfo(title).subscribe(
       (data) => {
         /**
-         * Get info from API by making sure that search bar isn't empty and that the result
+         * Get info from API again by making sure that search bar isn't empty and that the result
          * returned is valid i.e. ("Response": "True")
          */
         if (data.Response === "True") {

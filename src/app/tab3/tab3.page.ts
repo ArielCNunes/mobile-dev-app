@@ -17,6 +17,7 @@ export class Tab3Page implements OnInit {
 
   constructor(private watchlistService: WatchlistService) {}
 
+  // When this method is initialised: get the watchlist and also add new poster to it
   ngOnInit() {
     this.watchlist = this.watchlistService.getWatchlist();
     // Subscribe to movieAdded
@@ -27,6 +28,6 @@ export class Tab3Page implements OnInit {
 
   clearWatchlist() {
     this.watchlistService.clearWatchlist();
-    this.watchlist = []; // Clear the local array
+    this.watchlist = []; // Clear the local array too
   }
 }

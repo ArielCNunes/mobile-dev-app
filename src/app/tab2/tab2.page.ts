@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { IonHeader, IonToolbar, IonTitle, IonContent, IonCard, IonCardHeader, IonImg, IonItem, IonSearchbar, IonButton, IonIcon } from '@ionic/angular/standalone';
 import { ExploreContainerComponent } from '../explore-container/explore-container.component';
-import { isPlatform } from '@ionic/angular';
+// import { isPlatform } from '@ionic/angular';
 import { MoviesInfoService } from '../Services/movies-info.service';
 import { CommonModule } from '@angular/common'; // for *ngFor
 import { FormsModule } from '@angular/forms';
 import { Browser } from '@capacitor/browser'; // open browser page
-import { Keyboard } from '@capacitor/keyboard'; // show keyboard
+// import { Keyboard } from '@capacitor/keyboard'; // show keyboard
 import { Router, RouterLinkWithHref } from '@angular/router';
 import { WatchlistService } from '../Services/watchlist.service';
 
@@ -19,7 +19,6 @@ import { WatchlistService } from '../Services/watchlist.service';
 })
 
 export class Tab2Page implements OnInit {
-  @ViewChild('searchBar') searchBar!: IonSearchbar; // this is how we'll interact with the search bar in the .html file
   Movies: any = [];
   title: string = '';
   newTitle:string = '';
@@ -53,7 +52,7 @@ export class Tab2Page implements OnInit {
     );
   }
 
-  // Add to watchlist through service
+  // Add to watchlist through watchlist service
   addToWatchlist(poster: string) {
     this.watchlistService.addToWatchlist(poster);
   }
@@ -72,7 +71,7 @@ export class Tab2Page implements OnInit {
     await Browser.open({ url });
   }
 
-  // Show Keyboard when user clicks on search bar
+  // Show Keyboard when user clicks on search bar - NOT WORKING (at least not on the web)
   // async showKeyboard() {
   //   if (isPlatform('ios')) {
   //     await Keyboard.show();
@@ -80,7 +79,7 @@ export class Tab2Page implements OnInit {
   //     // For all other platforms + web
   //     await this.searchBar.setFocus();
   //   }
-  // } NOT WORKING (at least not on the web)
+  // }
 
   // Open synopsis page and pass the title as a state
   synopsis(title: string) {
